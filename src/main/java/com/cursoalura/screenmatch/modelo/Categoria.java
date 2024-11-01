@@ -9,6 +9,7 @@ public enum Categoria {
     CRIMEN("Crime");
 
     private String categoriaOmdb;
+
     Categoria (String categoriaOmdb){
         this.categoriaOmdb = categoriaOmdb;
     }

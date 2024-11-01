@@ -2,10 +2,12 @@ package com.cursoalura.screenmatch.principal;
 
 import com.cursoalura.screenmatch.modelo.DatoSerie;
 import com.cursoalura.screenmatch.modelo.DatosTemporada;
+import com.cursoalura.screenmatch.modelo.Serie;
 import com.cursoalura.screenmatch.service.ConsumoAPI;
 import com.cursoalura.screenmatch.service.ConveritrDatos;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Principal {
 
@@ -87,7 +89,15 @@ public class Principal {
     }
 
     private void mostrarSerieBuscadas() {
-        datoSeries.forEach(System.out::println);
+        List<Serie> series = new ArrayList<>();
+        series = datoSeries.stream()
+                .map(d -> new Serie(d))
+                .collect(Collectors.toList());
+
+        series.stream()
+                .sorted(Comparator.comparing(Serie::getGenero))
+                .forEach(System.out::println);
     }
     
 }
+//key gpt: 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

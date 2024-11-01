@@ -5,13 +5,13 @@ import java.util.OptionalDouble;
 
 public class Serie {
 
-    Private String titulo;
-    Private Integer totalDeTemporadas;
-    Private Double evaluacion;
-    Private String poster;
-    Private Categoria genero;
-    Private String actores;
-    Private String sinopsis;
+    private String titulo;
+    private Integer totalDeTemporadas;
+    private double evaluacion;
+    private Categoria genero;
+    private String poster;
+    private String actores;
+    private String sinopsis;
 
 
     public Serie (DatoSerie datoSerie){
@@ -24,4 +24,71 @@ public class Serie {
         this.sinopsis = datoSerie.sinopsis();
     }
 
+    @Override
+    public String toString() {
+
+        return "genero=" + genero +
+                "titulo='" + titulo + '\'' +
+                ", totalDeTemporadas=" + totalDeTemporadas +
+                ", evaluacion=" + evaluacion +
+                ", poster='" + poster + '\'' +
+                ", actores='" + actores + '\'' +
+                ", sinopsis='" + sinopsis + '\'';
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Integer getTotalDeTemporadas() {
+        return totalDeTemporadas;
+    }
+
+    public void setTotalDeTemporadas(Integer totalDeTemporadas) {
+        this.totalDeTemporadas = totalDeTemporadas;
+    }
+
+    public double getEvaluacion() {
+        return evaluacion;
+    }
+
+    public void setEvaluacion(double evaluacion) {
+        this.evaluacion = evaluacion;
+    }
+
+    public Categoria getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Categoria genero) {
+        this.genero = genero;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    public String getActores() {
+        return actores;
+    }
+
+    public void setActores(String actores) {
+        this.actores = actores;
+    }
+
+    public String getSinopsis() {
+        return sinopsis;
+    }
+
+    public void setSinopsis(String sinopsis) {
+        this.sinopsis = sinopsis;
+    }
 }

@@ -76,6 +76,23 @@ Este proyecto fue desarrollado como parte del curso de Java, en el cual aprendim
 - **Objetivo**: Aprender a usar las expresiones lambda para simplificar el código.
 - **Detalles**: Exploramos cómo las funciones anónimas pueden mejorar la eficiencia y legibilidad del código.
 
+- ### 19. Uso de la Función peek
+- **Objetivo**: Facilitar la depuración dentro de un Stream.
+- **Detalles**: Se introdujo la función `peek`, que permite visualizar los elementos en cada etapa del Stream, ayudando a verificar y depurar el flujo de datos en tiempo real.
+
+### 20. Operaciones Intermedias y Finales en Streams
+- **Objetivo**: Manipular y extraer datos de forma eficiente.
+- **Detalles**: Aprendimos a utilizar operaciones como `map`, `filter` y `find`, que nos permiten transformar, filtrar y encontrar datos específicos dentro de un Stream.
+
+### 21. Uso de Optional para Evitar Nulos
+- **Objetivo**: Evitar errores de referencia nula al trabajar con datos opcionales.
+- **Detalles**: Se exploró el uso de `Optional` como un contenedor seguro para almacenar episodios y evitar errores de `NullPointerException` dentro de los flujos de datos.
+
+### 22. DoubleSummaryStatistics
+- **Objetivo**: Analizar estadísticas en los datos de calificación.
+- **Detalles**: Usamos la clase `DoubleSummaryStatistics` para calcular la calificación más alta, la más baja y el total de evaluaciones de nuestras series, permitiendo obtener una visión detallada de los datos numéricos.
+
+
 ## Tecnologías Utilizadas
 - **Java 11+**
 - **Spring Framework**

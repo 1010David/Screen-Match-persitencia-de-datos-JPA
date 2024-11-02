@@ -100,4 +100,3 @@ public class Principal {
     }
     
 }
-//key gpt: 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

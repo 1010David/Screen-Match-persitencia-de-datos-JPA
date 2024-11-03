@@ -1,18 +1,31 @@
 package com.cursoalura.screenmatch.modelo;
 
 
+import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.OptionalDouble;
 
+@Entity
+@Table(name="Series")
 public class Serie {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
     private String titulo;
     private Integer totalDeTemporadas;
     private double evaluacion;
+    @Enumerated(EnumType.STRING)
     private Categoria genero;
     private String poster;
     private String actores;
     private String sinopsis;
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Episodio> episodes;
 
+    public  Serie(){}
 
     public Serie (DatoSerie datoSerie){
         this.titulo = datoSerie.titulo();
@@ -33,7 +46,25 @@ public class Serie {
                 ", evaluacion=" + evaluacion +
                 ", poster='" + poster + '\'' +
                 ", actores='" + actores + '\'' +
-                ", sinopsis='" + sinopsis + '\'';
+                ", sinopsis='" + sinopsis + '\'' +
+                ", episodios='" + episodes + '\'';
+    }
+
+    public List<Episodio> getEpisodes() {
+        return episodes;
+    }
+
+    public void setEpisodes(List<Episodio> episodes) {
+        episodes.forEach(e->e.setSerie(this));
+        this.episodes = episodes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {

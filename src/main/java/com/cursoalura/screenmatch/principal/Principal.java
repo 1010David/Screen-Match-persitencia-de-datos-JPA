@@ -1,9 +1,6 @@
 package com.cursoalura.screenmatch.principal;
 
-import com.cursoalura.screenmatch.modelo.DatoSerie;
-import com.cursoalura.screenmatch.modelo.DatosTemporada;
-import com.cursoalura.screenmatch.modelo.Episodio;
-import com.cursoalura.screenmatch.modelo.Serie;
+import com.cursoalura.screenmatch.modelo.*;
 import com.cursoalura.screenmatch.repository.SerieRepository;
 import com.cursoalura.screenmatch.service.ConsumoAPI;
 import com.cursoalura.screenmatch.service.ConveritrDatos;
@@ -41,6 +38,9 @@ public class Principal {
                     1 - Buscar series 
                     2 - Buscar episodios
                     3 - Mostrar series buscadas
+                    4 - Mostrar series por título
+                    5 - Top 5 Series
+                    6 - Buscar Serie x Categoria
                                   
                     0 - Salir
                     """;
@@ -57,6 +57,15 @@ public class Principal {
                     break;
                 case 3:
                     mostrarSerieBuscadas();
+                    break;
+                case 4:
+                    buscarSeriesPorTitulo();
+                    break;
+                case 5:
+                    buscarTop5Series();
+                    break;
+                case 6:
+                    buscarSeriePorCategoria();
                     break;
 
                 case 0:
@@ -132,6 +141,33 @@ public class Principal {
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
+    }
+
+    private  void buscarSeriesPorTitulo(){
+
+        System.out.println("Cúal serie buscar?");
+        var nombreSerie = teclado.nextLine();
+        Optional<Serie> serieBuscada = repositorio.findByTituloContainsIgnoreCase(nombreSerie);
+
+        if(serieBuscada.isPresent()){
+            System.out.println("Serie found: " + serieBuscada.get());
+        } else {
+            System.out.println("Not found!");
+        }
+    }
+    private  void buscarTop5Series(){
+        List<Serie> topSeries = repositorio.findTop5ByOrderByEvaluacionDesc();
+        topSeries.forEach(s ->
+                System.out.println("Serie: " + s.getTitulo() + " Evaluación: " + s.getEvaluacion()));
+    }
+
+    private  void  buscarSeriePorCategoria(){
+        System.out.println("Genero/Categora de Serie: ");
+        var genero = teclado.nextLine();
+        var categoria = Categoria.fromSEspanol(genero);
+        List<Serie> seriesPorCategoria = repositorio.findByGenero(categoria);
+        System.out.println("Series de la categoria: " + genero);
+        seriesPorCategoria.forEach(System.out::println);
     }
     
 }

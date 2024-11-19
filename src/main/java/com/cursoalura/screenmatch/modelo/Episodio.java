@@ -54,6 +54,14 @@ public class Episodio {
         this.temporada = temporada;
     }
 
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
     public String getTitulo() {
         return titulo;
     }

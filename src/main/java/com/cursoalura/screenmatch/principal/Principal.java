@@ -13,7 +13,7 @@ public class Principal {
     private Scanner teclado = new Scanner(System.in);
     private ConsumoAPI consumoApi = new ConsumoAPI();
     private final String URL_BASE = "https://www.omdbapi.com/?t=";
-    private final String API_KEY = "TU-APIKEY-OMDB";
+    private final String API_KEY = "e213ac13";
     private ConveritrDatos conversor = new ConveritrDatos();
     private List<DatoSerie> datosSeries = new ArrayList<>();
     private SerieRepository repositorio;
@@ -103,7 +103,7 @@ public class Principal {
             var serieEncontrada = serie.get();
             List<DatosTemporada> temporadas = new ArrayList<>();
 
-            for (int i = 1; i <= serieEncontrada.getTotalDeTemporadas(); i++) {
+            for (int i = 1; i <= serieEncontrada.getTotalTemporadas(); i++) {
                 var json = consumoApi.obtenerDatos(URL_BASE + serieEncontrada.getTitulo().replace(" ", "+") + "&season=" + i + API_KEY);
                 DatosTemporada datosTemporada = conversor.obteberDatos(json, DatosTemporada.class);
                 temporadas.add(datosTemporada);
@@ -178,10 +178,10 @@ public class Principal {
     private void  buscarEpisodiosPorTitulo(){
         System.out.println("Escribe el nombre del episodio que deseas buscar");
         var nombreEpisodio = teclado.nextLine();
-        List<Episodio> episodiosEncontrados = repositorio.episodiosPorNombre(nombreEpisodio);
-        episodiosEncontrados.forEach(e ->
-                System.out.printf("Serie: %s Temporada %s Episodio %s Evaluación %s\n",
-                        e.getSerie().getTitulo(), e.getTemporada(), e.getNumeroEpisodio(), e.getEvaluacion()));
+        //List<Episodio> episodiosEncontrados = repositorio.episodiosPorNombre(nombreEpisodio);
+        //episodiosEncontrados.forEach(e ->
+        //        System.out.printf("Serie: %s Temporada %s Episodio %s Evaluación %s\n",
+        //                e.getSerie().getTitulo(), e.getTemporada(), e.getNumeroEpisodio(), e.getEvaluacion()));
 
     }
 

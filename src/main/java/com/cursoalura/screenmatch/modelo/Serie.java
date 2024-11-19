@@ -1,6 +1,5 @@
 package com.cursoalura.screenmatch.modelo;
 
-
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,13 +14,14 @@ public class Serie {
     private Long id;
     @Column(unique = true)
     private String titulo;
-    private Integer totalDeTemporadas;
+    private Integer totalTemporadas;
     private double evaluacion;
     @Enumerated(EnumType.STRING)
     private Categoria genero;
     private String poster;
     private String actores;
     private String sinopsis;
+
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodes;
 
@@ -29,7 +29,7 @@ public class Serie {
 
     public Serie (DatoSerie datoSerie){
         this.titulo = datoSerie.titulo();
-        this.totalDeTemporadas = datoSerie.totalDeTemporadas();
+        this.totalTemporadas = datoSerie.totalDeTemporadas();
         this.evaluacion = OptionalDouble.of(java.lang.Double.valueOf(datoSerie.evaluacion())).orElse(0);
         this.poster = datoSerie.poster();
         this.genero = Categoria.fromString(datoSerie.genero().split(",")[0].trim());
@@ -42,7 +42,7 @@ public class Serie {
 
         return "genero=" + genero +
                 "titulo='" + titulo + '\'' +
-                ", totalDeTemporadas=" + totalDeTemporadas +
+                ", totalDeTemporadas=" + totalTemporadas +
                 ", evaluacion=" + evaluacion +
                 ", poster='" + poster + '\'' +
                 ", actores='" + actores + '\'' +
@@ -75,12 +75,12 @@ public class Serie {
         this.titulo = titulo;
     }
 
-    public Integer getTotalDeTemporadas() {
-        return totalDeTemporadas;
+    public Integer getTotalTemporadas() {
+        return totalTemporadas;
     }
 
-    public void setTotalDeTemporadas(Integer totalDeTemporadas) {
-        this.totalDeTemporadas = totalDeTemporadas;
+    public void setTotalTemporadas(Integer totalTemporadas) {
+        this.totalTemporadas = totalTemporadas;
     }
 
     public double getEvaluacion() {
